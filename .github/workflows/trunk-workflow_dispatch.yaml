@@ -1,0 +1,36 @@
+name: Dispatch only
+on:
+  workflow_dispatch:
+    inputs:
+      check_repository:
+        required: true
+
+jobs:
+  trunk_check_runner:
+    name: Trunk Check runner [linux]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ inputs.check_repository }}
+
+      # Caching is only needed when using ephemeral CI runners
+      # add a comment
+      - name: Cache Linters/Formatters
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/trunk
+          key: trunk-${{ runner.os }}
+
+      - name: Trunk
+        run: |
+          curl -fSsL https://get.trunk.io | sudo bash
+          sudo trunk init
+          sudo trunk check -a
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@v1
+        with:
+          arguments: -a
