@@ -16,12 +16,6 @@ jobs:
         with:
           repository: ${{ inputs.check_repository }}
 
-      - name: Trunk
-        run: |
-          curl -fSsL https://get.trunk.io | sudo sh
-          trunk init
-          trunk check -a
-
       # Caching is only needed when using ephemeral CI runners
       # add a comment
       - name: Cache Linters/Formatters
@@ -29,6 +23,12 @@ jobs:
         with:
           path: ~/.cache/trunk
           key: trunk-${{ runner.os }}
+
+      - name: Trunk
+        run: |
+          curl -fSsL https://get.trunk.io | sudo sh
+          trunk init
+          trunk check -a
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
