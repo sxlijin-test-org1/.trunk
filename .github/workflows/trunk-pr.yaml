@@ -1,5 +1,9 @@
-name: Pull Request
-on: [pull_request]
+name: Dispatch only
+on:
+  workflow_dispatch:
+    inputs:
+      check_repository:
+        required: true
 
 jobs:
   trunk_check_runner:
@@ -9,6 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        repository: ${{ inputs.check_repository }}
 
       # Caching is only needed when using ephemeral CI runners
       # add a comment
@@ -20,3 +25,5 @@ jobs:
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
+        with:
+          arguments: -a
