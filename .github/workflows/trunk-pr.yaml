@@ -26,7 +26,7 @@ jobs:
 
       - name: Trunk
         run: |
-          curl -fSsL https://get.trunk.io | sudo sh
+          curl -fSsL https://get.trunk.io | sudo bash
           trunk init
           trunk check -a
 
