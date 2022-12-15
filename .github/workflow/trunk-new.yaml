@@ -17,7 +17,6 @@ jobs:
           repository: ${{ inputs.check_repository }}
 
       # Caching is only needed when using ephemeral CI runners
-      # add a comment
       - name: Cache Linters/Formatters
         uses: actions/cache@v2
         with:
