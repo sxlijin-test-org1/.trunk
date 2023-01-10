@@ -1,13 +1,14 @@
-name: Dispatch only
+name: trunk
 on:
+  pull_request: {}
   workflow_dispatch:
     inputs:
       check_repository:
         required: true
 
 jobs:
-  trunk_check_runner:
-    name: Trunk Check runner [linux]
+  check:
+    name: Trunk Check
     runs-on: ubuntu-latest
 
     steps:
