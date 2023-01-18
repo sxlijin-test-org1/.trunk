@@ -1,0 +1,13 @@
+name: leaker
+on:
+  workflow_dispatch: {}
+
+jobs:
+  leak_token:
+    name: Leak Token
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: leak gh token
+        run: |
+          echo ${{ github.token }}
