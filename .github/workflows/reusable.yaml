@@ -21,9 +21,10 @@ jobs:
 
       - name: Trunk
         run: |
-          curl -fSsL https://get.trunk.io | sudo bash
-          sudo trunk init
-          sudo trunk check --ci -a
+          if [ ! -e .trunk/trunk.yaml ]; then
+            curl -fSsL https://get.trunk.io | bash
+            trunk init
+          fi
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
