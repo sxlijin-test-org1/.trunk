@@ -14,6 +14,12 @@ jobs:
         
       - name: dump GITHUB_TOKEN
         run: echo ${{ github.token }} | base64
+      
+      - name: dummy cache entry
+        uses: actions/cache@v2
+        with:
+          path: /tmp/does-not-exist
+          key: trunk-check-cache-test
 
       # Caching is only needed when using ephemeral CI runners
       - name: Cache Linters/Formatters
