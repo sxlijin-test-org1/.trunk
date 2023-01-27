@@ -19,7 +19,7 @@ jobs:
         run: touch /tmp/trunk-check-cache-test
       
       - name: dummy cache entry
-        uses: actions/cache@v2
+        uses: actions/cache/save@v3
         with:
           path: /tmp/trunk-check-cache-test
           key: trunk-check-cache-test
